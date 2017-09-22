@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:icecore="http://www.icefaces.org/icefaces/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <h:body >
+        
+        <ui:composition template="./template.xhtml">
+        <ui:param name="title" value="#{msgs['example.ace.cellEditor.title']}"/>
+        <ui:param name="description" value="#{msgs['example.ace.cellEditor.description']}"/>
+ 
+            <ui:define name="content" >
+
+                <h:form id="listenerForm">
+                    <style type="text/css">
+                        
+                        /* Important required because row */
+                        .ui-datatable-odd {
+                            background-color:lightgray !important;
+                            background-position-y: -1400px; /* IE7 hack */
+                        }
+                    </style>
+                    
+                    <h:outputLabel id="dt" value="Select Date"></h:outputLabel>
+				<!-- Calendar Component -->
+                                <ace:dateTimeEntry id="cal"
+                                   value="#{datePopup.selectedDate}"
+                                   timeZone="Africa/Nairobi"
+                                   pattern="dd/MM/yyyy"
+                                   renderAsPopup="true"/>
+                    
+                    <h:dataTable id="eventLog"
+                                 value="#{employeeControlBean.eventLog}"
+                                 var="event"
+                                 style="border: 1px solid #CDCDCD; padding: 10px;"
+                                 width="100%" cellspacing="0" cellpadding="2"
+                                 rows="#{employeeControlBean.eventSize}">
+                         <h:column id="event">
+                             <f:facet name="header">
+                                Event Log <i>(most recent first)</i>
+                             </f:facet>
+
+                             #{event}
+
+                             <f:facet name="footer">
+                                <b>Current Row: #{not empty employeeControlBean.selectedRows ? employeeControlBean.selectedRows[0].name : 'None'}</b>
+                             </f:facet>
+                         </h:column>
+                    </h:dataTable>
+                                
+                                
+                   <ace:dataTable id="employeeTable" 
+                                  value="#{employeeDAO.findEmployees()}"
+                                  var="employee"
+                                  selectionMode="single"
+                                  paginator="true"
+                                  paginatorPosition="bottom"
+                                  resizableColumns="true"
+                                  rows="20" 
+                                  stateMap="#{employeeControlBean.stateMap}"
+                                  rowSelectListener="#{employeeControlBean.selectListener}"
+                                  rowUnselectListener="#{employeeControlBean.deselectListener}">
+                       
+                        <ace:ajax event="select" execute="@this listenerForm:eventLog" 
+                                  render="@this listenerForm:eventLog"  
+                                  onSuccess="ice.ace.jq('#details').effect('highlight');" />
+                       
+                        <ace:column id="emp_code" headerText= "ID" 
+                                    style="width: 0">
+                           <ace:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText id="emp_codeCell" value="#{employee.emp_code}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:inputText id="emp_codeInput" value="#{employee.emp_code}"/>
+                                </f:facet>
+                           </ace:cellEditor>
+                        </ace:column>
+                        <ace:column id="emp_sht_desc" headerText="Emp Code" sortBy="#{employee.emp_sht_desc}"
+                                    >
+                           <ace:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText id="emp_sht_descCell" value="#{employee.emp_sht_desc}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:inputText id="emp_sht_descInput" value="#{employee.emp_sht_desc}"/>
+                                </f:facet>
+                           </ace:cellEditor>
+                        </ace:column>
+                        <ace:column id="emp_surname" headerText="Surname" sortBy="#{employee.emp_surname}"
+                                    >
+                           <ace:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText id="emp_surnameCell" value="#{employee.emp_surname}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:inputText id="emp_surnameInput" value="#{employee.emp_surname}"/>
+                                </f:facet>
+                           </ace:cellEditor>
+                        </ace:column>
+                        <ace:column id="emp_other_names" headerText="Other Names" sortBy="#{employee.emp_other_names}"
+                                    >   
+                           <ace:cellEditor>                         
+                                <f:facet name="output">
+                                    <h:outputText id="emp_other_namesCell" value="#{employee.emp_other_names}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:inputText id="emp_other_namesInput" value="#{employee.emp_other_names}"/>
+                                </f:facet>
+                           </ace:cellEditor>
+                        </ace:column>
+                        <ace:column id="emp_gender" headerText="Gender" sortBy="#{employee.emp_gender}"
+                                    >
+                           <ace:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText id="emp_genderCell" value="#{employee.emp_gender}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:inputText id="emp_genderInput" value="#{employee.emp_gender}"/>
+                                </f:facet>
+                           </ace:cellEditor>
+                        </ace:column>
+                        <ace:column id="emp_id_no" headerText="ID No." sortBy="#{employee.emp_id_no}"
+                                    >
+                           <ace:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText id="emp_id_noCell" value="#{employee.emp_id_no}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:inputText id="emp_id_noInput" value="#{employee.emp_id_no}"/>
+                                </f:facet>
+                           </ace:cellEditor>
+                        </ace:column>
+                        <ace:column id="emp_contract_date" headerText="Contract date" sortBy="#{employee.emp_contract_date}"
+                                    >
+                           <ace:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText id="emp_contract_dateCell" value="#{employee.emp_contract_date}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:inputText id="emp_contract_dateInput" value="#{employee.emp_contract_date}"/>
+                                </f:facet>
+                           </ace:cellEditor>
+                        </ace:column>
+                       <ace:column id="options" headerText="Options">
+                           <ace:rowEditor id="editor"/>
+                       </ace:column>
+                    </ace:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

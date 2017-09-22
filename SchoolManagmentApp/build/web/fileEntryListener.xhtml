@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:icecore="http://www.icefaces.org/icefaces/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <h:body>
+        
+        <ui:composition template="./template.xhtml">
+ 
+            <ui:define name="content" >
+
+
+                <h:form id="example-form">
+
+                    <ace:panel>
+                       <h:panelGrid styleClass="centeredPanelGrid">
+                            <ace:fileEntry id="fileEntryListener"
+                                 fileEntryListener="#{fileEntryListener.customValidator}"/>
+                       </h:panelGrid>
+
+                        <h:panelGrid styleClass="centeredPanelGrid">
+                             <h:commandButton id="submitBtn" type="submit" value="Send File"/>
+                             <ace:message id="msg" for="example-form:fileEntryListener"
+                                          showDetail="true" />
+                        </h:panelGrid>
+               </ace:panel>
+
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

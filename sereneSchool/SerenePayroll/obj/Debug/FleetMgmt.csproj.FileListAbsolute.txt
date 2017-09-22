@@ -1,0 +1,10 @@
+F:\Developments\Fleet_management_system\Fleet_management_system\SerenePayroll\bin\SerenePayroll.dll
+F:\Developments\Fleet_management_system\Fleet_management_system\SerenePayroll\bin\SerenePayroll.pdb
+F:\Developments\Fleet_management_system\Fleet_management_system\SerenePayroll\obj\Debug\FleetMgmt.csprojResolveAssemblyReference.cache
+F:\Developments\Fleet_management_system\Fleet_management_system\SerenePayroll\obj\Debug\SerenePayroll.dll
+F:\Developments\Fleet_management_system\Fleet_management_system\SerenePayroll\obj\Debug\SerenePayroll.pdb
+F:\Developments\School Management System\sereneSchool\SerenePayroll\bin\SerenePayroll.dll
+F:\Developments\School Management System\sereneSchool\SerenePayroll\bin\SerenePayroll.pdb
+F:\Developments\School Management System\sereneSchool\SerenePayroll\obj\Debug\FleetMgmt.csprojResolveAssemblyReference.cache
+F:\Developments\School Management System\sereneSchool\SerenePayroll\obj\Debug\SerenePayroll.dll
+F:\Developments\School Management System\sereneSchool\SerenePayroll\obj\Debug\SerenePayroll.pdb

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:icecore="http://www.icefaces.org/icefaces/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <h:body>
+        
+        <ui:composition template="./template.xhtml">
+ 
+            <ui:define name="content" >
+
+                <h:form id="form">
+
+                    <ace:panel id="dynamicResourcePanel" header="Dynamic Resource" style="width: 100%;">
+                        <h:panelGrid width="60%" columns="2" cellpadding="20" cellspacing="20">
+                            <h:outputLabel for="label" value="Enter label: " />
+                            <h:inputText id="label" value="#{dynamicResourceBean.label}">
+                                <f:ajax render="@form" />
+                            </h:inputText>
+
+                            <h:outputLabel for="type" value="Choose Type: " />
+                            <h:selectOneRadio id="type" value="#{dynamicResourceBean.type}">
+                                <f:ajax render="@form" />
+                                <f:selectItem itemValue="link" itemLabel="Link" />
+                                <f:selectItem itemValue="image" itemLabel="Image" />
+                                <f:selectItem itemValue="button" itemLabel="Button" />
+                            </h:selectOneRadio>
+
+                            <ace:dynamicResource id="dynamicResource"
+                                resource="#{dynamicResourceBean.resource}" 
+                                label="#{dynamicResourceBean.label}" 
+                                mimeType="application/pdf" 
+                                image="#{dynamicResourceBean.type eq 'image' ? 'css/images/download-button.gif' : ''}" 
+                                type="#{dynamicResourceBean.type}" />
+                            <h:outputText value=""/>
+                        </h:panelGrid>
+                    </ace:panel>
+
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

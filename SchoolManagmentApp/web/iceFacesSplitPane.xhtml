@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:icecore="http://www.icefaces.org/icefaces/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <h:body>
+        gsfghasfhsafh
+          
+        <ui:composition template="./template.xhtml">
+ 
+            <ui:define name="content" >
+            <ace:panel id="panel">
+
+                <ace:splitPane id="splitPane" scrollable="true"
+                    columnDivider="50">
+
+                    <f:facet name="left" id="leftFacet">
+                        <h:outputText id="out1" value="h:outputText in Left Facet" />
+                        <h:panelGroup id="pg1">
+                            <p>Left pane content example</p>
+                        </h:panelGroup>
+                        <ace:panel id="leftPanel" header="Left panel">
+                            More content...
+                        </ace:panel>
+                        <ace:panel id="leftPanel2" header="Left panel" collapsed="false">
+                            More content..2....
+                        </ace:panel>
+                    </f:facet>
+                    <f:facet name="right" id="rightFacet">
+                        <h:outputText id="out2" value="h:outputText in Right Facet" />
+                        <h:panelGroup id="pg2">
+                            <p>Right pane content example</p>
+                        </h:panelGroup>
+                        <ace:panel id="rightPanel"  header="Right panel">
+                            More content...
+                        </ace:panel>
+                    </f:facet>
+
+                </ace:splitPane>
+
+            </ace:panel>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

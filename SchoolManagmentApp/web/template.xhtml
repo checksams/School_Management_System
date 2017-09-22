@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ace="http://www.icefaces.org/icefaces/components">
+    <h:head>
+    </h:head>
+    <h:body   style="font-size: small">
+ 
+        <table cellpadding="0" cellspacing="0" 
+               style="background-color: #b6b7bc; width: 100%; height:100%">
+               <tr style="width: 100%;">
+                   <td width="100%" height="100px" bgcolor="#4b6c9e">
+                       
+                   </td>
+               </tr>
+               <tr>
+                   <td >
+                        <table cellpadding="0" cellspacing="0" 
+                               style="background-color: #dddddd; width: 100%; ">
+                               <tr style="width: 100%; ">
+                                   <td width="20%" height="600px" valign="top"
+                                       bgcolor="#bbccdd" onclick="" >
+
+                                        <h:form id="formTemp">
+                                            <ace:accordion id="accordionPanel" autoHeight="false" event="click" effect="bounceslide">
+                                                <ace:accordionPane id="paneHome" title="Home" >  
+                                                    <h:panelGrid columns="1"> 
+                                                    <h:link value="Home" outcome="home" />
+                                                    <h:link value="Select Theme" outcome="themeSelect" />
+                                                    </h:panelGrid> 
+                                                </ace:accordionPane>
+                                                <ace:accordionPane id="paneOrg" title="Organization" >  
+                                                    <h:panelGrid columns="1"> 
+                                                    <h:link value="Organization Structure" outcome="dataTableListener"/>
+                                                    <h:link value="Employee Details" outcome="employee" />
+                                                    <h:link value="Template" outcome="template1" />
+                                                    </h:panelGrid> 
+                                                </ace:accordionPane>  
+                                                <ace:accordionPane id="paneAdmin" title="Administration">  
+                                                    <h:panelGrid columns="1">  
+                                                    <h:link value="Student Registration" outcome="dataTableLazyLoading" />
+                                                    <h:link value="Student Information Enquiry" outcome="dataTableResizableColumns" />
+                                                    <h:link value="Displinary" outcome="cellEditor" />
+                                                    <h:link value="Fees Management" outcome="columnGroup" />
+                                                    </h:panelGrid> 
+                                                </ace:accordionPane>
+                                                <ace:accordionPane id="paneClasses" title="Classes"> 
+                                                    <h:panelGrid columns="1">  
+                                                    <h:link value="Course Syllabus" outcome="chartColor" />
+                                                    <h:link value="Course/Class Registration" outcome="chartBar" />
+                                                    <h:link value="Student Attendance" outcome="schedule" />
+                                                    <h:link value="Student Attendance Enquiry" outcome="schedule" />
+                                                    <h:link value="Class Material" outcome="schedule" />
+                                                    <h:link value="Mock/preparation Exams" outcome="schedule" />
+                                                    <h:link value="Exam Results" outcome="schedule" />
+                                                    <h:link value="Certificates Awarded" outcome="schedule" />
+                                                    </h:panelGrid> 
+                                                </ace:accordionPane>
+                                                <ace:accordionPane id="paneTeacher" title="Teacher"> 
+                                                    <h:panelGrid columns="1">  
+                                                    <h:link value="Teachers Time Table" outcome="schedule" />
+                                                    <h:link value="Teachers Personal Class Material" outcome="schedule" />
+                                                    <h:link value="Teachers General Class Material" outcome="schedule" />
+                                                    </h:panelGrid> 
+                                                </ace:accordionPane>
+                                                <ace:accordionPane id="paneTimeTable" title="Time Table"> 
+                                                    <h:panelGrid columns="1">  
+                                                    <h:link value="Time Table of Classes" outcome="schedule" />
+                                                    <h:link value="Time Table of Exam" outcome="schedule" />
+                                                    </h:panelGrid> 
+                                                </ace:accordionPane>
+                                                <ace:accordionPane id="paneSysAdmin" title="System Administration"> 
+                                                    <h:panelGrid columns="1">  
+                                                    <h:link value="System Privilages" outcome="schedule" />
+                                                    <h:link value="System Roles" outcome="schedule" />
+                                                    <h:link value="User Setup" outcome="schedule" />
+                                                    <h:link value="Change Password" outcome="schedule" />
+                                                    </h:panelGrid> 
+                                                </ace:accordionPane>
+                                                <ace:accordionPane id="paneAbout" title="About"> 
+                                                    <h:panelGrid columns="1">  
+                                                    <h:link value="About" outcome="schedule" />
+                                                    </h:panelGrid> 
+                                                </ace:accordionPane>
+                                            </ace:accordion>
+                                        </h:form>
+                                </td>
+                                   <td width="80%" align="top" valign="top">
+                                       <div class="content" style="vertical-align: top ">
+                                         <ui:insert name="content">
+                                             Default Content
+                                         </ui:insert>
+                                     </div>
+                                </td>
+                               </tr>
+                        </table>
+                   </td>
+               </tr>
+        </table>
+    </h:body>
+</html>
+

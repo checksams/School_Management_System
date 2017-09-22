@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:icecore="http://www.icefaces.org/icefaces/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <h:body>
+        <ui:composition template="./template.xhtml">
+ 
+            <ui:param name="title" value="#{msgs['example.ace.accordionpanel.title']}"/>
+            <ui:param name="description" value="#{msgs['example.ace.accordionpanel.description']}"/>
+
+            <ui:define name="content" >
+                
+            <ace:panel header="Configuration">
+                <h:panelGrid width="100%" columns="2" cellpadding="6" cellspacing="6">
+                        <ace:radioButtons id="viewMode" header="Select view mode" value="#{scheduleBean.viewMode}" labelPosition="top">
+                            <ace:ajax render="@all" />
+                            <f:selectItem itemValue="month" itemLabel="Month" />
+                            <f:selectItem itemValue="week" itemLabel="Week" />
+                            <f:selectItem itemValue="day" itemLabel="Day" />
+                        </ace:radioButtons>
+                </h:panelGrid>
+            </ace:panel>
+            <ace:schedule   id="schedule"
+                            value="#{scheduleBean.events}"
+                            showEventDetails="disabled"
+                            showTooltip="true"
+                            scrollable="true"
+                            scrollHeight="400"
+                            sideBar="hidden"
+                            addEvents="false"
+                            editEvents="false"
+                            deleteEvents="false"
+                            timeZone="UTC"
+                            viewMode="#{scheduleBean.viewMode}" />
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

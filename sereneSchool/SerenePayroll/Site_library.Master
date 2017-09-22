@@ -1,0 +1,175 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site_library.Master.cs" Inherits="SerenePayroll.Site_library" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <meta name="viewport" content="initial-scale=0.005">
+    <meta charset="utf-8">
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    
+    <script type="text/javascript">
+        function MySiteFunction(title, msg) {
+            var orignalstring = document.getElementById("sitemsgbox").innerHTML;
+            var newstring = orignalstring.replace("[TITLE]", title);
+            document.getElementById("sitemsgbox").innerHTML = newstring;
+
+            orignalstring = document.getElementById("sitemsgbox").innerHTML;
+            newstring = orignalstring.replace("[MESSAGE]", msg);
+            document.getElementById("sitemsgbox").innerHTML = newstring;
+
+            document.getElementById('sitedimmer').style.visibility = 'visible';
+            document.getElementById('sitedimmer').style.display = 'inline';
+            document.getElementById('sitemsgbox').style.visibility = 'visible';
+            document.getElementById('sitemsgbox').style.display = 'inline';
+        }
+    </script>
+
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+    <div class="page_dimmer" id="sitedimmer" style="display:none "> </div> 
+    <div class="msg_box_container" id="sitemsgbox" style="display:none "> 
+    <table class="errorTableRound" cellpadding="5"> 
+    <tr style="background-color:inherit;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;"> 
+    <td colspan="2" style="font-weight:bolder">[TITLE]</td> 
+    </tr> 
+    <tr> 
+    <td>[MESSAGE]</td> <td><asp:TextBox ID="txtProductKey" runat="server" Width="300px"></asp:TextBox></td> 
+    </tr> 
+    <tr> 
+    <td colspan="2" align="center">
+        <asp:Button ID="btnOk" runat="server" Text="OK" OnClick="btnOk_Click" />
+    </tr> 
+    </table> 
+    </div> 
+
+    <div>
+        <div class="header">
+        <table width="100%">
+        <tr>
+        <td>
+            <div class="vendor">
+                <h1 class="h5">
+                    Serene School Management System
+                </h1>
+            </div>
+         </td>
+         <td>
+            <div class="title">
+                <h1>
+                    NAME OF SCHOOL</h1>
+            </div>
+         </td>
+         <td>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/aspxLogin.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+         </td>
+         </tr>
+         </table>
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" 
+                    EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal" 
+                    onmenuitemclick="NavigationMenu_MenuItemClick">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Organization">
+                             <asp:MenuItem NavigateUrl="~/aspxOrganization.aspx" Text="Organization Structure" Selectable="false"/>
+                             <asp:MenuItem NavigateUrl="~/aspxEmployeeDetails.aspx" Text="Employee Details" Selectable="false"/>
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="" Text="Setups">
+                            <asp:MenuItem NavigateUrl="~/aspxDestinations.aspx" Text="Destinations" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxRoutes.aspx" Text="Routes" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxVehicles.aspx" Text="Transport Vehicles" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxPrices.aspx" Text="Transport Prices" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxParcelCategories.aspx" Text="Categories" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxParcelPriceList.aspx" Text="Parcel Pricelist" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Template Screen" Selectable="false"/>
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="" Text="Administration">
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Student Registration" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Student Information Enquiry" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Displinary" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Fees Management" Selectable="false"/>
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="" Text="Classes">
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Course Syllabus" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Course/Class Registration" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Student Attendance" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Student Attendance Enquiry" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Class Material" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Mock/preparation Exams" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Exam Results" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Certificates Awarded" Selectable="false"/>
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="" Text="Teacher">
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Teachers Time Table" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Teachers Personal Class Material" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Teachers General Class Material" Selectable="false"/>
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="" Text="Time Table">
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Time Table of Classes" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxTemplate.aspx" Text="Time Table of Exam" Selectable="false"/>
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="" Text="System Administration">
+                            <asp:MenuItem NavigateUrl="~/aspxSystemPrivilages.aspx" Text="System Privilages" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxSystemRoles.aspx" Text="System Roles" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxUsers.aspx" Text="User Setup" Selectable="false"/>
+                            <asp:MenuItem NavigateUrl="~/aspxUserPasswordChange.aspx" Text="Change Password" />
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="" Text="Reports" >
+                            <asp:MenuItem NavigateUrl="~/aspxImportFromExcel.aspx" Text="Import From Excel"/>
+                            <asp:MenuItem NavigateUrl="~/aspxMap.aspx" Text="Maps"/>
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
+                    </Items>
+                </asp:Menu>
+
+            </div>
+        </div>
+        <div style="background-color:Black;">            
+            <asp:ContentPlaceHolder ID="workflow" runat="server" >
+                <asp:Label ID="lblProcessArea" Width="20%"  runat="server" BackColor="Black" height="30px"
+                    Font-Bold="True" ForeColor="White">    
+                               Process Area :  
+                    </asp:Label> 
+                <asp:Label ID="lblWorkFlow" runat="server" BackColor="Black" height="30px"
+                    Font-Bold="True" ForeColor="White"></asp:Label>  
+            </asp:ContentPlaceHolder>    
+        </div>
+       <div class="main" style="width:100%">
+            <table width="100%">
+                <tr>
+                    <td >
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>

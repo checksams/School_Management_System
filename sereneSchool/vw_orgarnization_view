@@ -1,0 +1,21 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `vw_orgarnization_view` AS
+    select 
+        `a`.`org_code` AS `org_code`,
+        `a`.`org_sht_desc` AS `org_sht_desc`,
+        `a`.`org_desc` AS `org_desc`,
+        `a`.`org_postal_address` AS `org_postal_address`,
+        `a`.`org_physical_address` AS `org_physical_address`,
+        `a`.`org_type` AS `org_type`,
+        `a`.`org_parent_org_code` AS `org_parent_org_code`,
+        `a`.`org_parent_org_sht_desc` AS `org_parent_org_sht_desc`,
+        `b`.`org_desc` AS `parent_organization`,
+        `a`.`org_wef` AS `org_wef`,
+        `a`.`org_wet` AS `org_wet`,
+        `a`.`org_level` AS `org_level`
+    from
+        (`shr_organizations` `a`
+        left join `shr_organizations` `b` ON ((`a`.`org_parent_org_code` = `b`.`org_code`)))

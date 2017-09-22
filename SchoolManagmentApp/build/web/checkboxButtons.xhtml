@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:icecore="http://www.icefaces.org/icefaces/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <h:body >
+        
+        <ui:composition template="./template.xhtml">
+        <ui:param name="title" value="#{msgs['example.ace.cellEditor.title']}"/>
+        <ui:param name="description" value="#{msgs['example.ace.cellEditor.description']}"/>
+ 
+            <ui:define name="content" >
+
+                <h:form id= "form" style="text-align: center">
+                    <h:outputLabel for="mutuallyExclusive" value="Enable mutual exclusivity: " />
+                    <h:selectBooleanCheckbox id="mutuallyExclusive" value="#{checkboxButtons.mutuallyExclusive}">
+                        <f:ajax render="@form" />
+                    </h:selectBooleanCheckbox>
+                    <ace:panel>
+                        <ace:checkboxButtons id="checkboxButtons" header="Using ace:checkboxButtons" mutuallyExclusive="#{checkboxButtons.mutuallyExclusive}" value="#{checkboxButtons.selected}" labelPosition="top">
+                            <f:selectItem itemLabel="One" itemValue="One" />
+                            <f:selectItem itemLabel="Two" itemValue="Two" />
+                            <f:selectItem itemLabel="Three" itemValue="Three" />
+                            <f:selectItem itemLabel="Four" itemValue="Four" />
+                            <f:selectItem itemLabel="Five" itemValue="Five" />
+                            <ace:ajax />
+                        </ace:checkboxButtons>
+                        The selected checkboxes are:
+                        <h:outputText id="checkboxDescription" value="#{checkboxButtons.selectedString}" style="font-weight: bold;"/>
+                    </ace:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

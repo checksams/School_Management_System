@@ -1,0 +1,73 @@
+/* MPL License text (see http://www.mozilla.org/MPL/) */
+
+
+package org.icefaces.samples.showcase.example.ace.notificationpanel;
+
+import java.io.Serializable;
+
+import javax.faces.bean.CustomScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
+import java.lang.String;
+
+@ManagedBean(name= NotificationPanelBean.BEAN_NAME)
+@CustomScoped(value = "#{window}")
+public class NotificationPanelBean implements Serializable {
+    public static final String BEAN_NAME = "notificationPanelBean";
+    public String getBeanName() { return BEAN_NAME; }
+    
+    private String imageLocation;
+    private String imageAlt;
+    private String imageDescription;
+    private boolean visible;
+    private String effect;
+
+    public NotificationPanelBean()
+    {
+        initializeBeanVariables();
+    }
+
+   public void showAppropriateButton(ActionEvent e)
+   {
+       visible = !visible;
+   }
+   
+   public void closeListener(AjaxBehaviorEvent event) {
+        visible = false; //need this when using the close icon on the header
+    }
+
+    public void displayListener(AjaxBehaviorEvent event) {
+       // Can place any code required when the panel is displayed here...
+    }
+
+    public String getEffect() {
+        return effect;
+    }
+
+    public void setEffect(String effect) {
+        this.effect = effect;
+    }
+
+    private void initializeBeanVariables()
+    {
+        imageLocation = "/resources/css/images/dragdrop/vwBeatle.png";
+        imageAlt = "VW Beatle";
+        imageDescription = "The Volkswagen Type 1, widely known as the Volkswagen Beetle and Volkswagen Bug, is an economy car"
+                                + " produced by the German auto maker Volkswagen (VW) from 1938."
+                                + " With over 21 million manufactured in an air-cooled, rear-engined, rear-wheel drive configuration,"
+                                + " the Beetle is the longest-running and most-manufactured automobile of a single design platform anywhere in the world. (source: Wikipedia)";
+    }
+   
+    public String getImageDescription() { return imageDescription; }
+    public void setImageDescription(String imageDescription) { this.imageDescription = imageDescription; }
+    public String getImageAlt() { return imageAlt; }
+    public void setImageAlt(String imageAlt) { this.imageAlt = imageAlt; }
+    public String getImageLocation() { return imageLocation; }
+    public void setImageLocation(String imageLocation) { this.imageLocation = imageLocation; }
+    public boolean isVisible() {return visible;}
+    public void setVisible(boolean visible) {this.visible = visible;}
+
+
+}
+

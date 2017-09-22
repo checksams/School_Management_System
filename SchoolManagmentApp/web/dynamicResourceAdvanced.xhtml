@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:icecore="http://www.icefaces.org/icefaces/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <h:body>
+        
+        <ui:composition template="./template.xhtml">
+ 
+            <ui:define name="content" >
+
+                <h:form id="form">
+
+                    <ace:panel id="dynamicResourceAdvancedPanel" header="Dynamic Resource" style="width: 100%;">
+                        <h:panelGrid width="60%" columns="2" cellpadding="20" cellspacing="20">
+                            <h:outputLabel for="attachment" value="Download as attachment? " />
+                            <h:selectBooleanCheckbox id="attachment" value="#{dynamicResourceAdvancedBean.attachment}">
+                                <f:ajax render="@form" />
+                            </h:selectBooleanCheckbox>
+
+                            <h:outputLabel for="fileName" value="Enter file name: " />
+                            <h:inputText id="fileName" value="#{dynamicResourceAdvancedBean.fileName}" disabled="#{!dynamicResourceAdvancedBean.attachment}">
+                                <f:ajax render="@form" />
+                                <f:ajax render="dynamicResource" event="keyup" />
+                            </h:inputText>
+
+                            <h:outputLabel for="target" value="Open in... " />
+                            <h:selectOneRadio id="target" value="#{dynamicResourceAdvancedBean.target}">
+                                <f:ajax render="@form" />
+                                <f:selectItem itemValue="_blank" itemLabel="new window" />
+                                <f:selectItem itemValue="_self" itemLabel="same window" />
+                            </h:selectOneRadio>
+
+                            <ace:dynamicResource id="dynamicResource"
+                                resource="#{dynamicResourceBean.resource}" 
+                                label="Download resource" 
+                                fileName="#{dynamicResourceAdvancedBean.attachment ? dynamicResourceAdvancedBean.fileName : null}" 
+                                target="#{dynamicResourceAdvancedBean.target}" 
+                                image="css/images/download-button.gif" 
+                                type="image" />
+                            <h:outputText value=""/>
+                        </h:panelGrid>
+                    </ace:panel>
+
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

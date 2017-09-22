@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:icecore="http://www.icefaces.org/icefaces/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <h:body>
+        
+        <ui:composition template="./template.xhtml">
+ 
+            <ui:define name="content" >
+
+                <h:form id="textAreaEntryForm">
+                    <ace:panel id="inputPanel" header="Enter Comments Below" styleClass="required-styling-demo">
+                        <h:panelGrid id="inputGrid" columns="1" width="100%" styleClass="textEntryInputTable">
+                            <ace:textAreaEntry id="comment1Input" value="#{textAreaEntryBean.comment1}" label="Comments" labelPosition="inField" required="true" requiredIndicator=" (*)" indicatorPosition="labelRight">
+                                <ace:ajax render="@this comment1Output comment1Msg" event="blur"/>
+                            </ace:textAreaEntry>
+
+                            <ace:textAreaEntry id="comment2Input" value="#{textAreaEntryBean.comment2}" label="Additional Comments" labelPosition="inField" required="false" optionalIndicator=" (Opt.)" indicatorPosition="labelRight" resizable="false">
+                                <ace:ajax render="@this comment2Output comment2Msg" event="blur"/>
+                            </ace:textAreaEntry>
+
+                        </h:panelGrid>
+                        <h:panelGrid width="100%">
+                            <ace:message id="comment1Msg" for="comment1Input"/>
+                            <ace:message id="comment2Msg" for="comment2Input"/>
+                        </h:panelGrid>
+                    </ace:panel>
+
+                    <ace:panel id="personalInfoOutputPanel" header="Entered data">
+                        <h:panelGrid id="outputGrid" width="100%" style="text-align: left;">
+                            <h:outputText id="comment1Output" value="Comments: #{textAreaEntryBean.comment1}"/>
+                            <h:outputText id="comment2Output" value="Additional Comments: #{textAreaEntryBean.comment2}"/>
+                        </h:panelGrid>
+                    </ace:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

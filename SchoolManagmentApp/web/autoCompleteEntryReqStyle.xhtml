@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:icecore="http://www.icefaces.org/icefaces/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <h:body>
+        
+        <ui:composition template="./template.xhtml">
+ 
+            <ui:define name="content" >
+
+                <h:form id="inputForm">
+                    <ace:panel header="Color Customization">
+                        <h:panelGrid width="100%" columns="3" columnClasses="col25,col25,col50"
+                                     cellpadding="6" cellspacing="6">
+                                <h:outputLabel for="reqColor" value="Required Color Style:"/>
+                                <ace:simpleSelectOneMenu id="reqColor" value="#{autoCompleteEntryReqStyleBean.reqColor}"
+                                                 style="width: 150px;" disabled="#{autoCompleteEntryReqStyleBean.useTheme}">
+                                                 <ace:ajax execute="@this" />
+                                    <f:selectItem itemValue="blueRS" itemLabel="Blue"/>
+                                    <f:selectItem itemValue="greenRS" itemLabel="Green"/>
+                                    <f:selectItem itemValue="redRS" itemLabel="Red"/>
+                                    <f:ajax execute="@this" render="@all"/>
+                                </ace:simpleSelectOneMenu>
+                                <ace:message for="reqColor"/>
+
+                                <h:outputLabel for="optColor" value="Optional Color Style:"/>
+                                <ace:simpleSelectOneMenu id="optColor" value="#{autoCompleteEntryReqStyleBean.optColor}"
+                                                 style="width: 150px;" disabled="#{autoCompleteEntryReqStyleBean.useTheme}">
+                                                 <ace:ajax execute="@this" />
+                                    <f:selectItem itemValue="blueRS" itemLabel="Blue"/>
+                                    <f:selectItem itemValue="greenRS" itemLabel="Green"/>
+                                    <f:selectItem itemValue="redRS" itemLabel="Red"/>
+                                    <f:ajax execute="@this" render="@all"/>
+                                </ace:simpleSelectOneMenu>
+                                <ace:message for="optColor"/>
+                        </h:panelGrid>
+                        <h:panelGroup>
+                            <h:selectBooleanCheckbox id="useTheme" value="#{autoCompleteEntryReqStyleBean.useTheme}">
+                                <f:ajax execute="@this" render="@all"/>
+                            </h:selectBooleanCheckbox>
+                            <h:outputLabel for="useTheme" value=" No custom styling (use theme)" />
+                        </h:panelGroup>
+                    </ace:panel>
+               </h:form>
+
+               <h:form id="demoForm">    
+                    <ace:panel header="Autocomplete Entry" styleClass="#{autoCompleteEntryReqStyleBean.useTheme ? '' : 'required-styling-demo'}">
+                        <h:panelGrid columns="1" cellspacing="6" cellpadding="6" width="100%">
+                            <ace:autoCompleteEntry id="autoComplete1"
+                                                 value="#{autoCompleteEntryReqStyleBean.selectedText1}"
+                                                 rows="10" width="300"
+                                                 filterMatchMode=""
+                                                 label="Cities of the World 1:"
+                                                 labelPosition="left"
+                                                 required="true"
+                                                 requiredIndicator="(Required)"
+                                                 indicatorPosition="right"
+                                                 styleClass="#{autoCompleteEntryReqStyleBean.reqColor}">
+                                <f:selectItems value="#{autoCompleteEntryBean.cities}"/>
+                                <ace:ajax event="textChange" execute="@this" render="@all"/>
+                                <ace:ajax event="valueChange" execute="@this" render="@all"/>
+                                <ace:ajax event="blur" />
+                            </ace:autoCompleteEntry>
+                            <ace:message for="autoComplete1" />
+                            <ace:autoCompleteEntry id="autoComplete2"
+                                                 value="#{autoCompleteEntryReqStyleBean.selectedText2}"
+                                                 rows="10" width="300"
+                                                 filterMatchMode=""
+                                                 label="Cities of the World 2:"
+                                                 labelPosition="left"
+                                                 required="false"
+                                                 optionalIndicator="(Optional)"
+                                                 indicatorPosition="right"
+                                                 styleClass="#{autoCompleteEntryReqStyleBean.optColor}">
+                                <f:selectItems value="#{autoCompleteEntryBean.cities}"/>
+                                <ace:ajax event="textChange" execute="@this" render="@all"/>
+                                <ace:ajax event="valueChange" execute="@this" render="@all"/>
+                            </ace:autoCompleteEntry>
+                        </h:panelGrid>
+                    </ace:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

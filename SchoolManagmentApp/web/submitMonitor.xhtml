@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:icecore="http://www.icefaces.org/icefaces/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <h:body >
+        
+        <ui:composition template="./template.xhtml">
+        <ui:param name="title" value="#{msgs['example.ace.cellEditor.title']}"/>
+        <ui:param name="description" value="#{msgs['example.ace.cellEditor.description']}"/>
+ 
+            <ui:define name="content" >
+
+                <h:form id="demoForm">
+                    <h:panelGroup id="overall" layout="block">
+                        <ace:panel id="panel" header="Example Panel">
+                            <p>Click this button to utilize the submitMonitor for this specific panel. Otherwise click the button outside the panel to trigger the submitMonitor for the whole page.</p>
+
+                            <ace:submitMonitor id="submitMonitorPanel"
+                                               for=":demoForm:panel"
+                                               blockUI=":demoForm:panel"
+                                               autoCenter="true"
+                                               activeLabel="Waiting for panel to process..."/>
+                            <ace:pushButton id="submitPanel" label="Submit (Block Panel)"
+                                            actionListener="#{submitMonitor.sleep}"/>
+                        </ace:panel>
+
+                        <h:panelGroup id="page" layout="block" style="margin-top: 10px;">
+                            <ace:submitMonitor id="submitMonitorPage"
+                                               for=":demoForm:page"
+                                               blockUI="@all"
+                                               autoCenter="true"
+                                               activeLabel="Waiting for the entire page to process..."/>
+                            <ace:pushButton id="submitPage" label="Submit (Block Entire Page)"
+                                            actionListener="#{submitMonitor.sleep}"/>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

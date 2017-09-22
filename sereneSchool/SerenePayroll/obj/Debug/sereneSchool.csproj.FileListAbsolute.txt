@@ -1,0 +1,11 @@
+F:\Developments\School Management System\sereneSchool\SerenePayroll\bin\SerenePayroll.dll
+F:\Developments\School Management System\sereneSchool\SerenePayroll\bin\SerenePayroll.pdb
+F:\Developments\School Management System\sereneSchool\SerenePayroll\obj\Debug\SerenePayroll.dll
+F:\Developments\School Management System\sereneSchool\SerenePayroll\obj\Debug\SerenePayroll.pdb
+F:\Developments\School Management System\sereneSchool\SerenePayroll\obj\Debug\sereneSchool.csprojResolveAssemblyReference.cache
+F:\Developments\School_Management_System\sereneSchool\SerenePayroll\bin\SerenePayroll.dll
+F:\Developments\School_Management_System\sereneSchool\SerenePayroll\bin\SerenePayroll.pdb
+F:\Developments\School_Management_System\sereneSchool\SerenePayroll\obj\Debug\sereneSchool.csprojResolveAssemblyReference.cache
+F:\Developments\School_Management_System\sereneSchool\SerenePayroll\obj\Debug\SerenePayroll.dll
+F:\Developments\School_Management_System\sereneSchool\SerenePayroll\obj\Debug\SerenePayroll.pdb
+F:\Developments\School_Management_System\sereneSchool\SerenePayroll\bin\ASP.Web.UI.PopupControl.dll

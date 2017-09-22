@@ -1,0 +1,196 @@
+serenecrmsdb
+1.		cr_users				--System Users
+2.		cr_humans				--Humans
+3. 		cr_service_providers 	--Stores service provider details
+
+
+
+School management system design
+Tables
+1.		sm_employee_types   			--Stores the employee types in a school (Teachers, Sub-ordinate staff etc)
+2.		sm_employees   					--Stores the employees in a school
+4.		sch_class_levels   				--Stores the class levels e.g. Primary, Secondary, College Diploma, College Degree
+4.		sch_school_terms				--Stores terms in a school
+4.		sch_classes						--Stores the classes/grades offered in a school
+5.		sch_subjects					--Stores the subjects offered is a school
+5.		sch_class_subjects				--Stores the subjects offered per class
+5.		sch_class_subjects_alt			--Stores alterations on sch_class_subjects after authorization
+6. 		sch_class_departments			--Stores the departments in a school to categorize the subjects
+7.		sch_time_table_day				--Stores the time table day periods
+7.		sch_time_table					--Stores the school class training time table
+7.		sch_time_table_schedule			--Stores the time table Schedule
+7.		sch_events						--Stores the events to be undertaken at a particular time
+7.		sch_event_activities			--Stores the activities of an events
+
+7.		sch_student						--Stores the student details
+
+
+
+
+
+
+
+
+Entites in a school
+1.		sm_employee_types   			--Stores the employee types in a school (Teachers, Sub-ordinate staff etc)
+1.		sm_employees					--Stores the employees in a school
+1.		School Terms
+2.		Student
+		Student Attendance Register
+3.		Parent
+4.		sch_class_levels   				--Stores the class levels e.g. Primary, Secondary, College Diploma, College Degree
+4.		sch_classes						--Stores the classes/grades offered in a school
+5.		sch_subjects					--Stores the subjects offered
+5.		sch_class_subjects				--Stores the subjects offered per class
+6. 		sch_class_departments			--Stores the departments in a school to categorize the subjects
+7.		sch_time_table_day				--Stores the time table day periods
+7.		sch_time_table					--Stores the school class training time table
+8.		Activity Types (Co-curricular activities, development projects)
+9.		Co-curricular Activities (Schedule)
+10.		School fees
+11.		Exam
+12.		Exam Time Table
+13.		Exam results
+14.		Awards
+		Subjects
+15.		Courses
+16.		School Inventory
+16.		Library
+			Books details
+			Books categories
+		
+
+sch_school_years				--Stores years in a school
+sy_code				number
+sy_sht_desc			varchar		--short code for the year period e.g. '2016/2017' year or just '2016' year
+sy_start_date		date		--The starting date of the year
+sy_end_date			date		--The end date of the year	
+
+sch_school_terms				--Stores terms in a school
+st_code			number
+st_sy_code		number			--School Year
+st_sht_desc		varchar			--Term short description e.g. Term1, Term2, Term3
+st_desc			varchar			--Description of term(Optional)	
+st_start_date	date			--Start date of term
+st_end_date		date			--End date of term	
+
+sch_class_levels				--Stores the class levels e.g. Primary, Secondary, College Diploma, College Degree
+scl_code				number
+sch_sht_desc			varchar
+sch_desc				varchar
+
+sch_classes						--Stores the classes/grades offered in a school
+sc_code			number				--Primary Key
+sc_sht_desc		varchar(2)			--Digit representing the class
+sc_desc			varchar				--Description of class e.g Class 1
+sc_scl_code		number 				--Class level (e.g. primary, secondary) FK to sch_class_levels
+
+sch_class_departments		--Stores the departments in a school to categorize the subjects
+scd_code			number
+scd_sht_desc		varchar			--Department short code
+scd_name			varchar			--Full name of the department
+
+sch_subjects				--Stores the subjects offered is a school
+ss_code				number
+ss_sht_desc			varchar		--Short code for the subjects
+ss_name				varchar		--Subject name
+ss_scd_code			number		--Department
+
+sch_class_subjects				--Stores the subjects offered per class
+scs_code			number
+scs_ss_code			number		--Subject
+scs_sc_code			number		--Class
+scs_emp_code		number		--Teacher
+scs_sy_code			number		--School Year
+scs_auth			varchar		--Authorized YES, NO
+scs_auth_by			varchar		--User who Authorized the subject
+scs_auth_date		varchar		--Authorization date
+
+sch_class_subjects_alt				--Stores alterations on sch_class_subjects after authorization
+scsa_code			number
+scsa_scs_code			number
+scsa_scs_ss_code			number		--Subject
+scsa_scs_sc_code			number		--Class
+scsa_scs_emp_code		number		--Teacher
+scsa_scs_sy_code			number		--School Year
+scsa_scs_auth		varchar		--Authorized YES, NO
+scsa_scs_auth_by	varchar		--User who Authorized the subject
+scsa_scs_auth_date	varchar		--Authorized date
+scsa_alt_by			varchar 	--User who Altered the records
+scsa_alt_date		datetime	--Alteration date and time
+
+sch_time_table_type				--Stores Time Table Type e.g. Normal, Holiday,Exam, Personal time table (Back end non editable)
+ttt_code			number
+ttt_type			varchar		--Time Table Type e.g. Normal, Holiday, Exam time table
+
+sch_time_table					--Stores the school class training time table
+tt_code				number
+tt_desc				varchar		--Full description of the time table
+tt_ttt_code			number		--Type
+tt_sy_code			number		--School Year
+tt_st_code			number		--School Term
+tt_end_date			date		--The end date to stop weekly scheduling using this time table
+tt_current			varchar		--Current YES, NO
+tt_usr_code			number		--Personal Time Table User(Only applies to personal time table type) 
+
+sch_time_table_week				--Stores the time table day periods
+ttw_code			number
+ttw_day				varchar			--Stores the day of the week  e.g. Monday
+ttd_start_time		time			--Start time for daiy activities
+
+sch_time_table_periods			--Stores the time table periods
+ttp_code				number
+ttp_sc_code				number				--Class
+ttp_day					varchar2			--Day of week
+ttp_prd_start_time		time				--Period start time
+ttp_prd_duration		time in minutes		--Duration of the period in minutes
+ttp_ss_code				number				--subject
+ttp_st_code				number				--School Term
+ttp_tt_code				number				--Time Table name
+
+sch_events						--Stores the events to be undertaken at a particular time
+se_code					number
+se_sht_desc				varchar		--Short code
+se_desc					varchar		--Full Description of events
+se_start_date			date		--Event Start Date
+se_start_time			time		--Event start time
+se_end_date				date		--Event end date
+se_end_time				time 		--Event end time
+se_notes				varchar		--Notes
+se_headed_by			varchar		--Name of Person Heading the event
+se_location				varchar		--Location of event
+
+sch_event_activities			--Stores the activities of an events
+sea_code				number
+sea_se_code				number		--Event
+sea_sht_desc			varchar		--Short code
+sea_desc				varchar		--Full Description of activity
+sea_start_time			time		--Activity start time
+sea_end_time			time 		--Activity end time
+sea_notes				varchar		--Notes
+sea_headed_by			varchar		--Name of Person Heading the activity
+
+sch_time_table_schedule			--Stores the time table Schedule at the lowest level detail
+tts_code				number
+tts_ttt_code			number		--Time table period
+tts_date				date		--Schedule day date
+tts_se_code				number		--Event
+tts_notes				varchar		--Diary Notes
+tts_location			varchar		--Location of event
+
+sch_personal_tt_notes			--Stores personal notes that you put on the time table
+ptn_code				number
+ptn_usr_code			number	--User
+ptn_tts_code			number	--Time Table Schedule
+
+
+
+
+
+
+
+
+
+
+
+
